@@ -21,7 +21,7 @@ class PokemonPresenter: IPokemonPresenter, IPokemonIntToPresenter {
         interactor.getPokemonsAndGenerations()
     }
     
-    func setPokemonsAndGenerations(_ pokemons: [BasicPokemon], _ generations: [PokemonGeneration]) {
+    func setPokemonsAndGenerations(_ pokemons: [BasicPokemon], _ generations: [BasicPokemonGeneration], _ firstPokemonGeneration: [BasicPokemon]) {
         var basicPokemons = [Item]()
         for pokemon in pokemons {
             basicPokemons.append(.pokemon(pokemon))
@@ -33,6 +33,12 @@ class PokemonPresenter: IPokemonPresenter, IPokemonIntToPresenter {
             pokemonGenerations.append(.generation(generation))
         }
         Item.generations = pokemonGenerations
+        
+        var firstPokemons = [Item]()
+        for pokemon in firstPokemonGeneration {
+            firstPokemons.append(.pokemon(pokemon))
+        }
+        Item.firstPokemonGeneration = firstPokemons
         
         DispatchQueue.main .async { [weak self] in
             self!.view.collectionViewSetup()

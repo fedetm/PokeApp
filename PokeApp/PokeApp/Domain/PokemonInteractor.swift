@@ -30,7 +30,7 @@ class PokemonInteractor: IPokemonInteractor {
             }
         }
         
-        var pokemonGenerations: [PokemonGeneration]!
+        var pokemonGenerations: [BasicPokemonGeneration]!
         serialQueue.async { [weak self] in
             group.wait()
             group.enter()
@@ -41,11 +41,22 @@ class PokemonInteractor: IPokemonInteractor {
             }
         }
         
+        var firstPokemonGeneration: [BasicPokemon]!
         serialQueue.async { [weak self] in
             group.wait()
             group.enter()
             guard let self = self else { return }
-            self.presenter.setPokemonsAndGenerations(basicPokemons, pokemonGenerations)
+            self.repository.getPokemonsByGeneration(id: 1) { pokemons in
+                firstPokemonGeneration = pokemons
+                group.leave()
+            }
+        }
+        
+        serialQueue.async { [weak self] in
+            group.wait()
+            group.enter()
+            guard let self = self else { return }
+            self.presenter.setPokemonsAndGenerations(basicPokemons, pokemonGenerations, firstPokemonGeneration)
             group.leave()
         }
     }

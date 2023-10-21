@@ -11,7 +11,7 @@ class PokemonDataSource {
     
     let baseURL = URL(string: "https://pokeapi.co/api/v2/")!
     
-    func getPokemons(completion: @escaping (_ response: PokemonResponse) -> Void) {
+    func getPokemons(completion: @escaping (_ response: BasicPokemonResponse) -> Void) {
         let pokemonsURL = baseURL.appending(path: "pokemon/")
         
         Task.init {
@@ -22,7 +22,7 @@ class PokemonDataSource {
                       httpResponse.statusCode == 200 else { return }
                 
                 let decoder = JSONDecoder()
-                let pokemonRespone = try decoder.decode(PokemonResponse.self, from: data)
+                let pokemonRespone = try decoder.decode(BasicPokemonResponse.self, from: data)
                 
                 completion(pokemonRespone)
             } catch {
@@ -69,7 +69,7 @@ class PokemonDataSource {
         }
     }
     
-    func getGenerations(completion: @escaping (_ response: PokemonGenerationResponse) -> Void) {
+    func getGenerations(completion: @escaping (_ response: BasicPokemonGenerationResponse) -> Void) {
         let pokemonsURL = baseURL.appending(path: "generation/")
         
         Task.init {
@@ -80,9 +80,28 @@ class PokemonDataSource {
                       httpResponse.statusCode == 200 else { return }
                 
                 let decoder = JSONDecoder()
-                let pokemonRespone = try decoder.decode(PokemonGenerationResponse.self, from: data)
+                let pokemonRespone = try decoder.decode(BasicPokemonGenerationResponse.self, from: data)
                 
                 completion(pokemonRespone)
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func getPokemonsByGeneration(id: Int, completion: @escaping (_ pokemonsByGeneration: PokemonsByGenerationResponse) -> Void) {
+        let pokemonTypeURL = baseURL.appending(path: "generation/\(id)")
+        Task.init {
+            do {
+                let (data, response) = try await URLSession.shared.data(from: pokemonTypeURL)
+                
+                guard let httpResponse = response as? HTTPURLResponse,
+                      httpResponse.statusCode == 200 else { return }
+                
+                let decoder = JSONDecoder()
+                let pokemonsByGeneration = try decoder.decode(PokemonsByGenerationResponse.self, from: data)
+                
+                completion(pokemonsByGeneration)
             } catch {
                 print(error.localizedDescription)
             }

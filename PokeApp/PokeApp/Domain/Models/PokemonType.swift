@@ -10,5 +10,5 @@ import Foundation
 struct PokemonType: Codable {
     var id: Int
     var name: String
-    var generation: PokemonGeneration
+    var generation: BasicPokemonGeneration
 }

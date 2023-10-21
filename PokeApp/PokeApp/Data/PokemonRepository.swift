@@ -29,9 +29,15 @@ class PokemonRepository: IPokemonRepository {
         dataSource.getPokemonType(by: id, completion: completion)
     }
     
-    func getGenerations(completion: @escaping (_ generations: [PokemonGeneration]) -> Void) {
+    func getGenerations(completion: @escaping (_ generations: [BasicPokemonGeneration]) -> Void) {
         dataSource.getGenerations { response in
             completion(response.generations)
+        }
+    }
+    
+    func getPokemonsByGeneration(id: Int, completion: @escaping (_ pokemons: [BasicPokemon]) -> Void) {
+        dataSource.getPokemonsByGeneration(id: id) { pokemonsByGeneration in
+            completion(pokemonsByGeneration.pokemonSpecies)
         }
     }
     
