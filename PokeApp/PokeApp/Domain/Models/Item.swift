@@ -9,11 +9,20 @@ import Foundation
 
 enum Item: Hashable {
     case pokemon(BasicPokemon)
+    case firstPokemonGeneration(PokemonSpecieResponse)
     case generation(BasicPokemonGeneration)
     
     var pokemon: BasicPokemon? {
         if case .pokemon(let pokemon) = self {
             return pokemon
+        } else {
+            return nil
+        }
+    }
+    
+    var firstPokemonGeneration: PokemonSpecieResponse? {
+        if case .firstPokemonGeneration(let firstPokemonGeneration) = self {
+            return firstPokemonGeneration
         } else {
             return nil
         }
@@ -29,7 +38,8 @@ enum Item: Hashable {
     
     static var promotedPokemons: [Item]!
     
+    static var firstPokemonGeneration: [Item]!
+    
     static var generations: [Item]!
     
-    static var firstPokemonGeneration: [Item]!
 }

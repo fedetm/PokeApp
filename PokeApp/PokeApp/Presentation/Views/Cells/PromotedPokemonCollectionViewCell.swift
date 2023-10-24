@@ -79,14 +79,14 @@ class PromotedPokemonCollectionViewCell: UICollectionViewCell {
     
     func configureCell(_ pokemon: BasicPokemon) {
         headlineLabel.text = "Now Trending".uppercased()
-        titleLabel.text = pokemon.name
+        titleLabel.text = pokemon.name.capitalized
         subTitleLabel.text = "Base Experience: "
         imageView.image = UIImage(systemName: "photo.on.rectangle")
     }
     
     func configureCell(_ pokemon: Pokemon, _ image: UIImage) {
-        titleLabel.text = pokemon.name
         subTitleLabel.text = "Base Experience: \(pokemon.baseExperience)"
         imageView.image = image
-    } 
+    }
+    
 }

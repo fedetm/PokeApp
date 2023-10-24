@@ -17,8 +17,10 @@ protocol IPokemonRepository {
     
     func getGenerations(completion: @escaping (_ generations: [BasicPokemonGeneration]) -> Void)
     
-    func getPokemonsByGeneration(id: Int, completion: @escaping (_ pokemons: [BasicPokemon]) -> Void)
+    func getPokemonsByGeneration(id: Int, completion: @escaping (_ pokemons: [PokemonSpecieResponse]) -> Void)
     
     func getPokemonImage(from url: URL, completion: @escaping (_ data: Data) -> Void)
+    
+    func getPokemonSpecie(from url: URL, completion: @escaping (_ specie: PokemonSpecie) -> Void)
     
 }

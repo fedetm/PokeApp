@@ -22,7 +22,7 @@ class PokemonPresenter: IPokemonPresenter, IPokemonIntToPresenter {
         interactor.getPokemonsAndGenerations()
     }
     
-    func setPokemonsAndGenerations(_ pokemons: [BasicPokemon], _ generations: [BasicPokemonGeneration], _ firstPokemonGeneration: [BasicPokemon]) {
+    func setPokemonsAndGenerations(_ pokemons: [BasicPokemon], _ generations: [BasicPokemonGeneration], _ firstPokemonGeneration: [PokemonSpecieResponse]) {
         var basicPokemons = [Item]()
         for pokemon in pokemons {
             basicPokemons.append(.pokemon(pokemon))
@@ -37,7 +37,7 @@ class PokemonPresenter: IPokemonPresenter, IPokemonIntToPresenter {
         
         var firstPokemons = [Item]()
         for pokemon in firstPokemonGeneration {
-            firstPokemons.append(.pokemon(pokemon))
+            firstPokemons.append(.firstPokemonGeneration(pokemon))
         }
         Item.firstPokemonGeneration = firstPokemons
         
@@ -46,10 +46,18 @@ class PokemonPresenter: IPokemonPresenter, IPokemonIntToPresenter {
         }
     }
     
-    func getPokemonImageAndBaseExperience(from urlString: String, cell: UICollectionViewCell) {
-        interactor.getPokemonImageAndBaseExperience(from: urlString) { pokemon, data in
+    func getPokemonImageAndBaseExperience(pokemonURL urlString: String, cell: PromotedPokemonCollectionViewCell) {
+        interactor.getPokemonImageAndBaseExperience(pokemonURL: urlString) { pokemon, data in
             guard let image = UIImage(data: data) else { return }
-            let cell = cell as! PromotedPokemonCollectionViewCell
+            DispatchQueue.main .async {
+                cell.configureCell(pokemon, image)
+            }
+        }
+    }
+    
+    func getPokemonImageAndBaseExperience(specieURL urlString: String, cell: StandardAppCollectionViewCell) {
+        interactor.getPokemonImageAndBaseExperience(specieURL: urlString) { pokemon, data in
+            guard let image = UIImage(data: data) else { return }
             DispatchQueue.main .async {
                 cell.configureCell(pokemon, image)
             }

@@ -140,7 +140,8 @@ class PokemonView: UIViewController {
         // MARK: Data Source Initialization
         dataSource = .init(collectionView: collectionView, cellProvider: { [weak self] (collectionView, indexPath, item) -> UICollectionViewCell? in
             
-            let section = self!.sections[indexPath.section]
+            guard let self = self else { return nil }
+            let section = self.sections[indexPath.section]
             switch section {
             case .promoted:
                 let cell =
@@ -148,14 +149,16 @@ class PokemonView: UIViewController {
                 
                 cell.configureCell(item.pokemon!)
                 
-                self!.presenter.getPokemonImageAndBaseExperience(from: item.pokemon!.url, cell: cell)
+                self.presenter.getPokemonImageAndBaseExperience(pokemonURL: item.pokemon!.url, cell: cell)
                 
                 return cell
             case .standard:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StandardAppCollectionViewCell.reuseIdentifier, for: indexPath) as! StandardAppCollectionViewCell
                 
                 let isThirdItem = (indexPath.row + 1).isMultiple(of: 3)
-                cell.configureCell(item.pokemon!, hideBottomLine: isThirdItem)
+                cell.configureCell(hideBottomLine: isThirdItem)
+                
+                self.presenter.getPokemonImageAndBaseExperience(specieURL: item.firstPokemonGeneration!.pokemonSpecieURL, cell: cell)
                 
                 return cell
             case .categories:

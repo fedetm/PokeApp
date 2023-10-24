@@ -51,18 +51,6 @@ class StandardAppCollectionViewCell: UICollectionViewCell {
         return stackView
     }()
     
-    let installButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = UIColor(white: 0.95, alpha: 1)
-        button.layer.cornerRadius = 12
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .bold)
-        button.setTitleColor(.systemBlue, for: .normal)
-        button.setContentHuggingPriority(.required, for: .horizontal)
-        button.widthAnchor.constraint(equalToConstant: 65).isActive = true
-        
-        return button
-    }()
-    
     let lineView: UIView = {
         let view = UIView()
         view.backgroundColor = .lightGray
@@ -77,7 +65,6 @@ class StandardAppCollectionViewCell: UICollectionViewCell {
         labelStackView.addArrangedSubview(titleLabel)
         labelStackView.addArrangedSubview(subtitleLabel)
         stackView.addArrangedSubview(labelStackView)
-        stackView.addArrangedSubview(installButton)
         
         addSubview(stackView)
         addSubview(lineView)
@@ -90,7 +77,6 @@ class StandardAppCollectionViewCell: UICollectionViewCell {
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
             lineView.heightAnchor.constraint(equalToConstant: 1 / UIScreen.main.scale),
             lineView.leadingAnchor.constraint(equalTo: labelStackView.leadingAnchor),
-            lineView.trailingAnchor.constraint(equalTo: installButton.trailingAnchor),
             lineView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
@@ -99,10 +85,17 @@ class StandardAppCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureCell(_ pokemon: BasicPokemon, hideBottomLine: Bool) {
-        titleLabel.text = pokemon.name
-        subtitleLabel.text = pokemon.url
+    func configureCell(hideBottomLine: Bool) {
+        titleLabel.text = ""
+        subtitleLabel.text = ""
         imageView.image = UIImage(systemName: "photo.on.rectangle")
         lineView.isHidden = hideBottomLine
     }
+    
+    func configureCell(_ pokemon: Pokemon, _ image: UIImage) {
+        titleLabel.text = pokemon.name.capitalized
+        subtitleLabel.text = "Base Experience: \(pokemon.baseExperience)"
+        imageView.image = image
+    }
+    
 }

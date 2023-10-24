@@ -12,6 +12,8 @@ protocol IPokemonPresenter {
     
     func getPokemonsAndGenerations()
     
-    func getPokemonImageAndBaseExperience(from urlString: String, cell: UICollectionViewCell)
+    func getPokemonImageAndBaseExperience(pokemonURL urlString: String, cell: PromotedPokemonCollectionViewCell)
+    
+    func getPokemonImageAndBaseExperience(specieURL urlString: String, cell: StandardAppCollectionViewCell)
     
 }

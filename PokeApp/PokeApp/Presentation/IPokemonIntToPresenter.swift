@@ -9,6 +9,6 @@ import Foundation
 
 protocol IPokemonIntToPresenter: AnyObject {
     
-    func setPokemonsAndGenerations(_ pokemons: [BasicPokemon], _ generations: [BasicPokemonGeneration], _ firstPokemonGeneration: [BasicPokemon])
+    func setPokemonsAndGenerations(_ pokemons: [BasicPokemon], _ generations: [BasicPokemonGeneration], _ firstPokemonGeneration: [PokemonSpecieResponse])
     
 }

@@ -122,4 +122,22 @@ class PokemonDataSource {
         }
     }
     
+    func getPokemonSpecie(from url: URL, completion: @escaping (_ specie: PokemonSpecie) -> Void) {
+        Task.init {
+            do {
+                let (data, response) = try await URLSession.shared.data(from: url)
+                
+                guard let httpResponse = response as? HTTPURLResponse,
+                      httpResponse.statusCode == 200 else { return }
+                
+                let decoder = JSONDecoder()
+                let specie = try decoder.decode(PokemonSpecie.self, from: data)
+                
+                completion(specie)
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
 }

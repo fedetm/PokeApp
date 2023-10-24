@@ -17,7 +17,7 @@ class PokemonInteractor: IPokemonInteractor {
     }
     
     func getPokemonsAndGenerations() {
-        let serialQueue = DispatchQueue(label: "serialQueue")
+        let serialQueue = DispatchQueue(label: "serialQueuePromoted")
         let group = DispatchGroup()
         
         var basicPokemons: [BasicPokemon]!
@@ -41,7 +41,7 @@ class PokemonInteractor: IPokemonInteractor {
             }
         }
         
-        var firstPokemonGeneration: [BasicPokemon]!
+        var firstPokemonGeneration: [PokemonSpecieResponse]!
         serialQueue.async { [weak self] in
             group.wait()
             group.enter()
@@ -61,7 +61,7 @@ class PokemonInteractor: IPokemonInteractor {
         }
     }
     
-    func getPokemonImageAndBaseExperience(from urlString: String, completion: @escaping (_ pokemon: Pokemon, _ data: Data) -> Void) {
+    func getPokemonImageAndBaseExperience(pokemonURL urlString: String, completion: @escaping (_ pokemon: Pokemon, _ data: Data) -> Void) {
         let pokemonURL = URL(string: urlString)!
         self.repository.getPokemon(from: pokemonURL) { pokemon in
             let imageURL = URL(string: pokemon.sprites.other.officialArtwork.frontDefault)!
@@ -71,4 +71,43 @@ class PokemonInteractor: IPokemonInteractor {
         }
     }
     
+    func getPokemonImageAndBaseExperience(specieURL urlString: String, completion: @escaping (_ pokemon: Pokemon, _ data: Data) -> Void) {
+        
+        let serialQueue = DispatchQueue(label: "serialQueueStandard")
+        let group = DispatchGroup()
+        
+        var pokemonSpecie: PokemonSpecie!
+        group.enter()
+        serialQueue.async { [weak self] in
+            guard let self = self else { return }
+            let specieURL = URL(string: urlString)!
+            self.repository.getPokemonSpecie(from: specieURL) { specie in
+                pokemonSpecie = specie
+                group.leave()
+            }
+        }
+        
+        var pokemon: Pokemon!
+        serialQueue.async { [weak self] in
+            group.wait()
+            group.enter()
+            guard let self = self else { return }
+            let pokemonURL = URL(string: pokemonSpecie.varieties[0].pokemon.url)!
+            self.repository.getPokemon(from: pokemonURL) { poke in
+                pokemon = poke
+                group.leave()
+            }
+        }
+        
+        serialQueue.async { [weak self] in
+            group.wait()
+            group.enter()
+            guard let self = self else { return }
+            let imageURL = URL(string: pokemon.sprites.other.officialArtwork.frontDefault)!
+            self.repository.getPokemonImage(from: imageURL) { data in
+                completion(pokemon, data)
+                group.leave()
+            }
+        }
+    }
 }

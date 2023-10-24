@@ -11,6 +11,8 @@ protocol IPokemonInteractor {
     
     func getPokemonsAndGenerations()
     
-    func getPokemonImageAndBaseExperience(from urlString: String, completion: @escaping (_ pokemon: Pokemon, _ data: Data) -> Void)
+    func getPokemonImageAndBaseExperience(pokemonURL urlString: String, completion: @escaping (_ pokemon: Pokemon, _ data: Data) -> Void)
+    
+    func getPokemonImageAndBaseExperience(specieURL urlString: String, completion: @escaping (_ pokemon: Pokemon, _ data: Data) -> Void)
     
 }
