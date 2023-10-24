@@ -37,6 +37,7 @@
 		736ACEB62AD1FE5300758202 /* BasicPokemonSpecie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736ACEB52AD1FE5300758202 /* BasicPokemonSpecie.swift */; };
 		736ACEB82AD205FF00758202 /* StandardAppCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736ACEB72AD205FF00758202 /* StandardAppCollectionViewCell.swift */; };
 		736ACEBA2AE34F0300758202 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736ACEB92AE34F0300758202 /* CategoryCollectionViewCell.swift */; };
+		736ACEBE2AE452A700758202 /* Sprites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736ACEBD2AE452A700758202 /* Sprites.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +92,7 @@
 		736ACEB52AD1FE5300758202 /* BasicPokemonSpecie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicPokemonSpecie.swift; sourceTree = "<group>"; };
 		736ACEB72AD205FF00758202 /* StandardAppCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardAppCollectionViewCell.swift; sourceTree = "<group>"; };
 		736ACEB92AE34F0300758202 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		736ACEBD2AE452A700758202 /* Sprites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sprites.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,6 +212,7 @@
 				736ACEA82ACC81A800758202 /* BasicPokemonGeneration.swift */,
 				736ACEB32AD1FD3A00758202 /* PokemonsByGenerationResponse.swift */,
 				736ACEB52AD1FE5300758202 /* BasicPokemonSpecie.swift */,
+				736ACEBD2AE452A700758202 /* Sprites.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -255,8 +258,8 @@
 		736ACEB02ACDB96500758202 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				736ACEB72AD205FF00758202 /* StandardAppCollectionViewCell.swift */,
 				736ACEB12ACDB98300758202 /* PromotedPokemonCollectionViewCell.swift */,
+				736ACEB72AD205FF00758202 /* StandardAppCollectionViewCell.swift */,
 				736ACEB92AE34F0300758202 /* CategoryCollectionViewCell.swift */,
 			);
 			path = Cells;
@@ -410,6 +413,7 @@
 				736ACE952ACB5F1D00758202 /* PokemonRepository.swift in Sources */,
 				736ACEB62AD1FE5300758202 /* BasicPokemonSpecie.swift in Sources */,
 				736ACEBA2AE34F0300758202 /* CategoryCollectionViewCell.swift in Sources */,
+				736ACEBE2AE452A700758202 /* Sprites.swift in Sources */,
 				736ACE932ACB5F0B00758202 /* IPokemonRepository.swift in Sources */,
 				736ACEA32ACB7A9F00758202 /* BasicPokemon.swift in Sources */,
 				736ACE4E2ACB5BF600758202 /* AppDelegate.swift in Sources */,

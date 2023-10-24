@@ -16,6 +16,7 @@ struct Pokemon: Codable, Hashable {
     var name: String
     var order: Int
     var weight: Int
+    var sprites: Sprites
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -26,5 +27,6 @@ struct Pokemon: Codable, Hashable {
         case name
         case order
         case weight
+        case sprites
     }
 }

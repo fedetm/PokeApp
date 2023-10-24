@@ -50,6 +50,7 @@ class PromotedPokemonCollectionViewCell: UICollectionViewCell {
     
     let imageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
         imageView.layer.cornerRadius = 5.0
         return imageView
     }()
@@ -79,7 +80,13 @@ class PromotedPokemonCollectionViewCell: UICollectionViewCell {
     func configureCell(_ pokemon: BasicPokemon) {
         headlineLabel.text = "Now Trending".uppercased()
         titleLabel.text = pokemon.name
-        subTitleLabel.text = pokemon.url
-        imageView.backgroundColor = UIColor.blue
+        subTitleLabel.text = "Base Experience: "
+        imageView.image = UIImage(systemName: "photo.on.rectangle")
     }
+    
+    func configureCell(_ pokemon: Pokemon, _ image: UIImage) {
+        titleLabel.text = pokemon.name
+        subTitleLabel.text = "Base Experience: \(pokemon.baseExperience)"
+        imageView.image = image
+    } 
 }

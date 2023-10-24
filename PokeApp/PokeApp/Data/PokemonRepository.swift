@@ -21,8 +21,8 @@ class PokemonRepository: IPokemonRepository {
         }
     }
     
-    func getPokemon(with url: String, completion: @escaping (_ pokemon: Pokemon) -> Void) {
-        dataSource.getPokemon(with: url, completion: completion)
+    func getPokemon(from url: URL, completion: @escaping (_ pokemon: Pokemon) -> Void) {
+        dataSource.getPokemon(from: url, completion: completion)
     }
     
     func getPokemonType(by id: Int, completion: @escaping (_ pokemonType: PokemonType) -> Void) {
@@ -39,6 +39,10 @@ class PokemonRepository: IPokemonRepository {
         dataSource.getPokemonsByGeneration(id: id) { pokemonsByGeneration in
             completion(pokemonsByGeneration.pokemonSpecies)
         }
+    }
+    
+    func getPokemonImage(from url: URL, completion: @escaping (_ data: Data) -> Void) {
+        dataSource.getPokemonImage(from: url, completion: completion)
     }
     
 }

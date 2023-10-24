@@ -72,7 +72,7 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     
     func configureCell(_ generation: BasicPokemonGeneration, hideBottomLine: Bool) {
         titleLabel.text = generation.name
-        imageView.backgroundColor = UIColor.green
+        imageView.image = UIImage(systemName: "photo.on.rectangle")
         lineView.isHidden = hideBottomLine
     }
 }

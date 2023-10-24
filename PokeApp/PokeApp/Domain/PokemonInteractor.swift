@@ -60,4 +60,15 @@ class PokemonInteractor: IPokemonInteractor {
             group.leave()
         }
     }
+    
+    func getPokemonImageAndBaseExperience(from urlString: String, completion: @escaping (_ pokemon: Pokemon, _ data: Data) -> Void) {
+        let pokemonURL = URL(string: urlString)!
+        self.repository.getPokemon(from: pokemonURL) { pokemon in
+            let imageURL = URL(string: pokemon.sprites.other.officialArtwork.frontDefault)!
+            self.repository.getPokemonImage(from: imageURL) { data in
+                completion(pokemon, data)
+            }
+        }
+    }
+    
 }

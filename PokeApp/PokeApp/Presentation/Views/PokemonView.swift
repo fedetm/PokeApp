@@ -138,14 +138,17 @@ class PokemonView: UIViewController {
     
     func configureDataSource() {
         // MARK: Data Source Initialization
-        dataSource = .init(collectionView: collectionView, cellProvider: {
-            (collectionView, indexPath, item) -> UICollectionViewCell? in
-            let section = self.sections[indexPath.section]
+        dataSource = .init(collectionView: collectionView, cellProvider: { [weak self] (collectionView, indexPath, item) -> UICollectionViewCell? in
+            
+            let section = self!.sections[indexPath.section]
             switch section {
             case .promoted:
                 let cell =
                 collectionView.dequeueReusableCell(withReuseIdentifier: PromotedPokemonCollectionViewCell.reuseIdentifier, for: indexPath) as! PromotedPokemonCollectionViewCell
+                
                 cell.configureCell(item.pokemon!)
+                
+                self!.presenter.getPokemonImageAndBaseExperience(from: item.pokemon!.url, cell: cell)
                 
                 return cell
             case .standard:
@@ -161,8 +164,6 @@ class PokemonView: UIViewController {
                 cell.configureCell(item.generation!, hideBottomLine: isLastItem)
                 
                 return cell
-            default:
-                fatalError("Not yet implemented.")
             }
         })
         

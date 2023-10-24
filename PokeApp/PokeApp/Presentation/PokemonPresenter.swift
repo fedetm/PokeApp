@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class PokemonPresenter: IPokemonPresenter, IPokemonIntToPresenter {
     
@@ -42,6 +43,16 @@ class PokemonPresenter: IPokemonPresenter, IPokemonIntToPresenter {
         
         DispatchQueue.main .async { [weak self] in
             self!.view.collectionViewSetup()
+        }
+    }
+    
+    func getPokemonImageAndBaseExperience(from urlString: String, cell: UICollectionViewCell) {
+        interactor.getPokemonImageAndBaseExperience(from: urlString) { pokemon, data in
+            guard let image = UIImage(data: data) else { return }
+            let cell = cell as! PromotedPokemonCollectionViewCell
+            DispatchQueue.main .async {
+                cell.configureCell(pokemon, image)
+            }
         }
     }
     

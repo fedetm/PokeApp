@@ -31,11 +31,10 @@ class PokemonDataSource {
         }
     }
     
-    func getPokemon(with url: String, completion: @escaping (_ pokemon: Pokemon) -> Void) {
-        let pokemonURL = URL(string: url)!
+    func getPokemon(from url: URL, completion: @escaping (_ pokemon: Pokemon) -> Void) {
         Task.init {
             do {
-                let (data, response) = try await URLSession.shared.data(from: pokemonURL)
+                let (data, response) = try await URLSession.shared.data(from: url)
                 
                 guard let httpResponse = response as? HTTPURLResponse,
                       httpResponse.statusCode == 200 else { return }
@@ -107,4 +106,20 @@ class PokemonDataSource {
             }
         }
     }
+    
+    func getPokemonImage(from url: URL, completion: @escaping (_ data: Data) -> Void) {
+        Task.init {
+            do {
+                let (data, response) = try await URLSession.shared.data(from: url)
+                
+                guard let httpResponse = response as? HTTPURLResponse,
+                      httpResponse.statusCode == 200 else { return }
+                
+                completion(data)
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
 }

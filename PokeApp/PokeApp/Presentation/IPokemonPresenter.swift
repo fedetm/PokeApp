@@ -6,9 +6,12 @@
 //
 
 import Foundation
+import UIKit
 
 protocol IPokemonPresenter {
     
     func getPokemonsAndGenerations()
+    
+    func getPokemonImageAndBaseExperience(from urlString: String, cell: UICollectionViewCell)
     
 }
