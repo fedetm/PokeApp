@@ -19,6 +19,7 @@ class PokemonPresenter: IPokemonPresenter, IPokemonIntToPresenter {
     }
     
     func getPokemonsAndGenerations() {
+        view.activityIndicator.startAnimating()
         interactor.getPokemonsAndGenerations()
     }
     
@@ -42,7 +43,9 @@ class PokemonPresenter: IPokemonPresenter, IPokemonIntToPresenter {
         Item.firstPokemonGeneration = firstPokemons
         
         DispatchQueue.main .async { [weak self] in
-            self!.view.collectionViewSetup()
+            guard let self = self else { return }
+            self.view.collectionViewSetup()
+            self.view.activityIndicator.stopAnimating()
         }
     }
     

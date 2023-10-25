@@ -39,6 +39,8 @@
 		736ACEBE2AE452A700758202 /* Sprites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736ACEBD2AE452A700758202 /* Sprites.swift */; };
 		736ACEC02AE837A900758202 /* PokemonSpecie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736ACEBF2AE837A900758202 /* PokemonSpecie.swift */; };
 		736ACEC62AE86F7D00758202 /* Variety.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736ACEC52AE86F7D00758202 /* Variety.swift */; };
+		736ACEC92AE978FD00758202 /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736ACEC82AE978FD00758202 /* SectionHeaderView.swift */; };
+		736ACECB2AE979BF00758202 /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736ACECA2AE979BF00758202 /* LineView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +97,8 @@
 		736ACEBD2AE452A700758202 /* Sprites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sprites.swift; sourceTree = "<group>"; };
 		736ACEBF2AE837A900758202 /* PokemonSpecie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonSpecie.swift; sourceTree = "<group>"; };
 		736ACEC52AE86F7D00758202 /* Variety.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Variety.swift; sourceTree = "<group>"; };
+		736ACEC82AE978FD00758202 /* SectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
+		736ACECA2AE979BF00758202 /* LineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +190,7 @@
 		736ACE7E2ACB5C6300758202 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				736ACEC72AE956DA00758202 /* Supplementary Views */,
 				736ACEB02ACDB96500758202 /* Cells */,
 				736ACE832ACB5CF300758202 /* PokemonView.swift */,
 			);
@@ -206,16 +211,16 @@
 			isa = PBXGroup;
 			children = (
 				736ACE9E2ACB673B00758202 /* Item.swift */,
+				736ACEC52AE86F7D00758202 /* Variety.swift */,
+				736ACEBD2AE452A700758202 /* Sprites.swift */,
 				736ACEAA2ACCA2BE00758202 /* Pokemon.swift */,
 				736ACEA62ACC80FD00758202 /* PokemonType.swift */,
-				736ACEA42ACB8E2700758202 /* BasicPokemonResponse.swift */,
 				736ACEA22ACB7A9F00758202 /* BasicPokemon.swift */,
-				736ACEAE2ACCC67F00758202 /* BasicPokemonGenerationResponse.swift */,
+				736ACEBF2AE837A900758202 /* PokemonSpecie.swift */,
+				736ACEA42ACB8E2700758202 /* BasicPokemonResponse.swift */,
 				736ACEA82ACC81A800758202 /* BasicPokemonGeneration.swift */,
 				736ACEB32AD1FD3A00758202 /* PokemonsByGenerationResponse.swift */,
-				736ACEBD2AE452A700758202 /* Sprites.swift */,
-				736ACEBF2AE837A900758202 /* PokemonSpecie.swift */,
-				736ACEC52AE86F7D00758202 /* Variety.swift */,
+				736ACEAE2ACCC67F00758202 /* BasicPokemonGenerationResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -266,6 +271,15 @@
 				736ACEB92AE34F0300758202 /* CategoryCollectionViewCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		736ACEC72AE956DA00758202 /* Supplementary Views */ = {
+			isa = PBXGroup;
+			children = (
+				736ACEC82AE978FD00758202 /* SectionHeaderView.swift */,
+				736ACECA2AE979BF00758202 /* LineView.swift */,
+			);
+			path = "Supplementary Views";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -403,6 +417,7 @@
 				736ACE912ACB5EED00758202 /* PokemonInteractor.swift in Sources */,
 				736ACE8F2ACB5EAE00758202 /* IPokemonInteractor.swift in Sources */,
 				736ACE982ACB5F7D00758202 /* PokemonRouter.swift in Sources */,
+				736ACEC92AE978FD00758202 /* SectionHeaderView.swift in Sources */,
 				736ACEAB2ACCA2BE00758202 /* Pokemon.swift in Sources */,
 				736ACE8B2ACB5E7100758202 /* IPokemonPresenter.swift in Sources */,
 				736ACEAF2ACCC67F00758202 /* BasicPokemonGenerationResponse.swift in Sources */,
@@ -410,6 +425,7 @@
 				736ACEA52ACB8E2700758202 /* BasicPokemonResponse.swift in Sources */,
 				736ACEB82AD205FF00758202 /* StandardAppCollectionViewCell.swift in Sources */,
 				736ACEC62AE86F7D00758202 /* Variety.swift in Sources */,
+				736ACECB2AE979BF00758202 /* LineView.swift in Sources */,
 				736ACE8D2ACB5E9100758202 /* PokemonPresenter.swift in Sources */,
 				736ACE842ACB5CF300758202 /* PokemonView.swift in Sources */,
 				736ACEA92ACC81A800758202 /* BasicPokemonGeneration.swift in Sources */,

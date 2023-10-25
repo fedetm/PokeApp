@@ -72,8 +72,19 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     
     func configureCell(_ generation: BasicPokemonGeneration, hideBottomLine: Bool) {
         titleLabel.text = generation.name
-        imageView.image = UIImage(systemName: "photo.on.rectangle")
+        let randomColor = UIColor.random
+        imageView.backgroundColor = randomColor
         lineView.isHidden = hideBottomLine
     }
 }
+
+extension UIColor {
+    static var random: UIColor {
+        let red = CGFloat(arc4random_uniform(256)) / 255.0
+        let green = CGFloat(arc4random_uniform(256)) / 255.0
+        let blue = CGFloat(arc4random_uniform(256)) / 255.0
+        return UIColor(red: red, green: green, blue: blue, alpha: 1.0)
+    }
+}
+
 

@@ -11,11 +11,20 @@ class PokemonView: UIViewController {
     
     var presenter: IPokemonPresenter!
     
+    var activityIndicator: UIActivityIndicatorView!
+    
     // MARK: Section Definitions
     enum Section: Hashable {
         case promoted
         case standard(String)
         case categories
+    }
+    
+    // MARK: Supplementary View Definition
+    enum SupplementaryViewKind {
+        static let header = "header"
+        static let topLine = "topLine"
+        static let bottomLine = "bottomLine"
     }
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -28,6 +37,7 @@ class PokemonView: UIViewController {
         super.viewDidLoad()
         
         initPokemonModule()
+        configureActivityIndicator()
         presenter.getPokemonsAndGenerations()
     }
     
@@ -36,10 +46,27 @@ class PokemonView: UIViewController {
         router.initPokemonModule(view: self)
     }
     
+    func configureActivityIndicator() {
+        activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.color = .gray
+        
+        activityIndicator.center = view.center
+        
+        view.addSubview(activityIndicator)
+    }
+    
     // MARK: Collection View Setup
     func collectionViewSetup() {
         collectionView.collectionViewLayout = createLayout()
         
+        registerCollectionViewCells()
+        
+        registerCollectionReusableViews()
+        
+        configureDataSource()
+    }
+    
+    func registerCollectionViewCells() {
         collectionView.register(PromotedPokemonCollectionViewCell.self, forCellWithReuseIdentifier: PromotedPokemonCollectionViewCell.reuseIdentifier)
         
         collectionView.register(StandardAppCollectionViewCell.self,
@@ -48,14 +75,29 @@ class PokemonView: UIViewController {
         
         collectionView.register(CategoryCollectionViewCell.self,
            forCellWithReuseIdentifier: CategoryCollectionViewCell.reuseIdentifier)
-        
-        configureDataSource()
+    }
+    
+    func registerCollectionReusableViews() {
+        collectionView.register(SectionHeaderView.self,
+           forSupplementaryViewOfKind: SupplementaryViewKind.header,
+           withReuseIdentifier: SectionHeaderView.reuseIdentifier)
+        collectionView.register(LineView.self, forSupplementaryViewOfKind:
+           SupplementaryViewKind.topLine, withReuseIdentifier:
+           LineView.reuseIdentifier)
+        collectionView.register(LineView.self, forSupplementaryViewOfKind:
+           SupplementaryViewKind.bottomLine, withReuseIdentifier:
+           LineView.reuseIdentifier)
     }
     
     func createLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewCompositionalLayout
         { (sectionIndex, layoutEnvironment) ->
             NSCollectionLayoutSection? in
+            
+            let headerItemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.92), heightDimension: .estimated(44))
+            let headerItem = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerItemSize, elementKind: SupplementaryViewKind.header, alignment: .top)
+            headerItem.contentInsets = NSDirectionalEdgeInsets( top: 0, leading: 4, bottom: 0, trailing: 4)
+            
             let section = self.sections[sectionIndex]
             switch section {
             case .promoted:
@@ -96,6 +138,7 @@ class PokemonView: UIViewController {
                 
                 let section = NSCollectionLayoutSection(group: group)
                 section.orthogonalScrollingBehavior = .groupPagingCentered
+                section.boundarySupplementaryItems = [headerItem]
                 
                 return section
             case .categories:
@@ -130,6 +173,8 @@ class PokemonView: UIViewController {
                 )
                 
                 let section = NSCollectionLayoutSection(group: group)
+                section.boundarySupplementaryItems = [headerItem]
+                
                 return section
             }
         }
@@ -170,12 +215,42 @@ class PokemonView: UIViewController {
             }
         })
         
+        // MARK: Supplementary View Provider
+        dataSource.supplementaryViewProvider = { collectionView, kind, indexPath -> UICollectionReusableView? in
+            switch kind {
+            case SupplementaryViewKind.header:
+                let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: SupplementaryViewKind.header, withReuseIdentifier: SectionHeaderView.reuseIdentifier, for: indexPath) as! SectionHeaderView
+                
+                let section = self.sections[indexPath.section]
+                let sectionName: String
+                switch section {
+                case .promoted:
+                    return nil
+                case .standard(let name):
+                    sectionName = name
+                case .categories:
+                    sectionName = "Generations"
+                }
+                
+                headerView.setTitle(sectionName)
+                
+                return headerView
+        
+            case SupplementaryViewKind.topLine, SupplementaryViewKind.bottomLine:
+                let lineView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: LineView.reuseIdentifier, for: indexPath) as! LineView
+                return lineView
+        
+            default:
+                return nil
+            }
+        }
+        
         // MARK: Snapshot Definition
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         snapshot.appendSections([.promoted])
         snapshot.appendItems(Item.promotedPokemons, toSection: .promoted)
         
-        let popularSection = Section.standard("Popular this week")
+        let popularSection = Section.standard("First Generation")
         //let essentialSection = Section.standard("Essential picks")
         let categoriesSection = Section.categories
         
