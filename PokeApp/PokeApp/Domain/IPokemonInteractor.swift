@@ -15,4 +15,6 @@ protocol IPokemonInteractor {
     
     func getPokemonImageAndBaseExperience(specieURL urlString: String, completion: @escaping (_ pokemon: Pokemon, _ data: Data) -> Void)
     
+    func getSelectedPokemon(pokemonURL urlString: String, completion: @escaping (_ pokemon: Pokemon, _ data: Data) -> Void)
+    
 }

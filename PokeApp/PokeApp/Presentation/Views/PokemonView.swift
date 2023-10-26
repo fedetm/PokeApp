@@ -30,6 +30,7 @@ class PokemonView: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     var dataSource: UICollectionViewDiffableDataSource<Section, Item>!
+    var collectionViewDelegate: PokemonCollectionViewDelegate!
     
     var sections = [Section]()
     
@@ -64,6 +65,8 @@ class PokemonView: UIViewController {
         registerCollectionReusableViews()
         
         configureDataSource()
+        
+        configureCollectionViewDelegate()
     }
     
     func registerCollectionViewCells() {
@@ -262,6 +265,15 @@ class PokemonView: UIViewController {
         sections = snapshot.sectionIdentifiers
         
         dataSource.apply(snapshot)
+    }
+    
+    func configureCollectionViewDelegate() {
+        collectionViewDelegate = PokemonCollectionViewDelegate(view: self)
+        collectionView.delegate = collectionViewDelegate
+    }
+    
+    func showSelectedPokemon(_ pokemon: Pokemon, _ pokemonImage: UIImage) {
+        presenter.showSelectedPokemon(pokemon, pokemonImage)
     }
     
 }

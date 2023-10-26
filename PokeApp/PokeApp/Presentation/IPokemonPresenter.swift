@@ -16,4 +16,6 @@ protocol IPokemonPresenter {
     
     func getPokemonImageAndBaseExperience(specieURL urlString: String, cell: StandardAppCollectionViewCell)
     
+    func showSelectedPokemon(_ pokemon: Pokemon, _ pokemonImage: UIImage)
+    
 }

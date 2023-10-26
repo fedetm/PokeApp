@@ -9,6 +9,9 @@ import UIKit
 
 class PromotedPokemonCollectionViewCell: UICollectionViewCell {
     
+    var pokemon: Pokemon!
+    var pokemonImage: UIImage!
+    
     static let reuseIdentifier = "PromotedPokemonCollectionViewCell"
     
     let stackView: UIStackView = {
@@ -85,6 +88,8 @@ class PromotedPokemonCollectionViewCell: UICollectionViewCell {
     }
     
     func configureCell(_ pokemon: Pokemon, _ image: UIImage) {
+        self.pokemon = pokemon
+        self.pokemonImage = image
         subTitleLabel.text = "Base Experience: \(pokemon.baseExperience)"
         imageView.image = image
     }

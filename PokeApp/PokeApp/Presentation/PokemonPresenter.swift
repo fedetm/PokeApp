@@ -52,7 +52,7 @@ class PokemonPresenter: IPokemonPresenter, IPokemonIntToPresenter {
     func getPokemonImageAndBaseExperience(pokemonURL urlString: String, cell: PromotedPokemonCollectionViewCell) {
         interactor.getPokemonImageAndBaseExperience(pokemonURL: urlString) { pokemon, data in
             guard let image = UIImage(data: data) else { return }
-            DispatchQueue.main .async {
+            DispatchQueue.main.async {
                 cell.configureCell(pokemon, image)
             }
         }
@@ -61,10 +61,15 @@ class PokemonPresenter: IPokemonPresenter, IPokemonIntToPresenter {
     func getPokemonImageAndBaseExperience(specieURL urlString: String, cell: StandardAppCollectionViewCell) {
         interactor.getPokemonImageAndBaseExperience(specieURL: urlString) { pokemon, data in
             guard let image = UIImage(data: data) else { return }
-            DispatchQueue.main .async {
+            DispatchQueue.main.async {
                 cell.configureCell(pokemon, image)
             }
         }
+    }
+    
+    func showSelectedPokemon(_ pokemon: Pokemon, _ pokemonImage: UIImage) {
+        let router = PokemonDescriptionRouter()
+        router.showPokemonDescriptionView(currentView: self.view, pokemon: pokemon, image: pokemonImage)
     }
     
 }
