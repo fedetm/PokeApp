@@ -9,6 +9,6 @@ import Foundation
 
 protocol IPokemonDescriptionPresenter {
     
-    
+    func getSprites(from sprites: Sprites)
     
 }

@@ -9,7 +9,11 @@ import Foundation
 
 class PokemonDataSource {
     
-    let baseURL = URL(string: "https://pokeapi.co/api/v2/")!
+    var baseURL: URL
+    
+    init() {
+        baseURL = URL(string: "https://pokeapi.co/api/v2/")!
+    }
     
     func getPokemons(completion: @escaping (_ response: BasicPokemonResponse) -> Void) {
         let pokemonsURL = baseURL.appending(path: "pokemon/")

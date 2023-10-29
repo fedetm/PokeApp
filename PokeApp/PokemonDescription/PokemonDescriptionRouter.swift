@@ -19,6 +19,8 @@ class PokemonDescriptionRouter {
         let presenter = PokemonDescriptionPresenter(interactor: interactor, view: view)
         
         view.presenter = presenter
+        interactor.presenter = presenter
+        
         view.pokemon = pokemon
         view.pokemonImage = image
         

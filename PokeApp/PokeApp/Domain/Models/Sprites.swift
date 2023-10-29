@@ -9,12 +9,16 @@ import Foundation
 
 struct Sprites: Codable, Hashable {
     var backDefault: String
+    var backShiny: String
     var frontDefault: String
+    var frontShiny: String
     var other: Other
     
     enum CodingKeys: String, CodingKey {
         case backDefault = "back_default"
+        case backShiny = "back_shiny"
         case frontDefault = "front_default"
+        case frontShiny = "front_shiny"
         case other
     }
 }
