@@ -11,6 +11,4 @@ class SpriteCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var imageView: UIImageView!
     
-    
-    
 }

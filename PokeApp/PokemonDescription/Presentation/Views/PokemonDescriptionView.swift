@@ -8,10 +8,10 @@
 import UIKit
 
 class PokemonDescriptionView: UIViewController {
-    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var spritesLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var tableView: UITableView!
     
     var presenter: IPokemonDescriptionPresenter!
     
@@ -23,19 +23,24 @@ class PokemonDescriptionView: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureActivityIndicator()
+        self.navigationItem.title = pokemon.name.capitalized
         imageView.image = pokemonImage
-        nameLabel.text = pokemon.name.capitalized
+        configureActivityIndicator()
         presenter.getSprites(from: pokemon.sprites)
+        configureTableView()
     }
     
     func configureActivityIndicator() {
         activityIndicator = UIActivityIndicatorView(style: .large)
         activityIndicator.color = .gray
         
-        activityIndicator.center = view.center
+        activityIndicator.center = collectionView.center
         
         view.addSubview(activityIndicator)
+    }
+    
+    func configureTableView() {
+        tableView.dataSource = self
     }
 
 }
@@ -51,6 +56,23 @@ extension PokemonDescriptionView: UICollectionViewDataSource {
         collectionView.dequeueReusableCell(withReuseIdentifier: "PokemonSpritesCollectionViewCell", for: indexPath) as! SpriteCollectionViewCell
         
         cell.imageView.image = sprites[indexPath.row]
+        
+        return cell
+    }
+    
+}
+
+extension PokemonDescriptionView: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return pokemon.types.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PokemonTypeTableViewCell", for: indexPath) as! TypeTableViewCell
+        
+        let pokemonType = pokemon.types[indexPath.row]
+        cell.typeLabel.text = pokemonType.type.name.capitalized
         
         return cell
     }
