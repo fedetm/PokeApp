@@ -9,11 +9,16 @@ import UIKit
 
 class PokemonDescriptionView: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var spritesLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var typesTableView: UITableView!
+    @IBOutlet weak var movesTableView: UITableView!
+    @IBOutlet weak var abilitiesTableView: UITableView!
     
     var presenter: IPokemonDescriptionPresenter!
+    
+    var typesTableViewDelegate: TypesTableViewDelegate!
+    var movesTableViewDelegate: MovesTableViewDelegate!
+    var abilitiesTableViewDelegate: AbilitiesTableViewDelegate!
     
     var activityIndicator: UIActivityIndicatorView!
     
@@ -27,7 +32,24 @@ class PokemonDescriptionView: UIViewController {
         imageView.image = pokemonImage
         configureActivityIndicator()
         presenter.getSprites(from: pokemon.sprites)
-        configureTableView()
+        configureTypesTableView()
+        configureMovesTableView()
+        configureAbilitiesTableView()
+    }
+    
+    func configureAbilitiesTableView() {
+        abilitiesTableViewDelegate = AbilitiesTableViewDelegate(view: self)
+        abilitiesTableView.dataSource = abilitiesTableViewDelegate
+    }
+    
+    func configureMovesTableView() {
+        movesTableViewDelegate = MovesTableViewDelegate(view: self)
+        movesTableView.dataSource = movesTableViewDelegate
+    }
+    
+    func configureTypesTableView() {
+        typesTableViewDelegate = TypesTableViewDelegate(view: self)
+        typesTableView.dataSource = typesTableViewDelegate
     }
     
     func configureActivityIndicator() {
@@ -37,10 +59,6 @@ class PokemonDescriptionView: UIViewController {
         activityIndicator.center = collectionView.center
         
         view.addSubview(activityIndicator)
-    }
-    
-    func configureTableView() {
-        tableView.dataSource = self
     }
 
 }
@@ -56,23 +74,6 @@ extension PokemonDescriptionView: UICollectionViewDataSource {
         collectionView.dequeueReusableCell(withReuseIdentifier: "PokemonSpritesCollectionViewCell", for: indexPath) as! SpriteCollectionViewCell
         
         cell.imageView.image = sprites[indexPath.row]
-        
-        return cell
-    }
-    
-}
-
-extension PokemonDescriptionView: UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return pokemon.types.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PokemonTypeTableViewCell", for: indexPath) as! TypeTableViewCell
-        
-        let pokemonType = pokemon.types[indexPath.row]
-        cell.typeLabel.text = pokemonType.type.name.capitalized
         
         return cell
     }

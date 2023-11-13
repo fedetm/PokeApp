@@ -9,6 +9,6 @@ import UIKit
 
 class TypeTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var typeLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
 
 }
