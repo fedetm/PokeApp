@@ -52,11 +52,22 @@ class PokemonInteractor: IPokemonInteractor {
             }
         }
         
+        var secondPokemonGeneration: [PokemonSpecieResponse]!
         serialQueue.async { [weak self] in
             group.wait()
             group.enter()
             guard let self = self else { return }
-            self.presenter.setPokemonsAndGenerations(basicPokemons, pokemonGenerations, firstPokemonGeneration)
+            self.repository.getPokemonsByGeneration(id: 2) { pokemons in
+                secondPokemonGeneration = pokemons
+                group.leave()
+            }
+        }
+        
+        serialQueue.async { [weak self] in
+            group.wait()
+            group.enter()
+            guard let self = self else { return }
+            self.presenter.setPokemonsAndGenerations(basicPokemons, pokemonGenerations, firstPokemonGeneration, secondPokemonGeneration)
             group.leave()
         }
     }

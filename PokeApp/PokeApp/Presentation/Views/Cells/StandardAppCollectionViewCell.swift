@@ -3,6 +3,9 @@ import UIKit
 
 class StandardAppCollectionViewCell: UICollectionViewCell {
     
+    var pokemon: Pokemon!
+    var pokemonImage: UIImage!
+    
     static let reuseIdentifier = "StandardAppCollectionViewCell"
     
     let stackView: UIStackView = {
@@ -93,6 +96,8 @@ class StandardAppCollectionViewCell: UICollectionViewCell {
     }
     
     func configureCell(_ pokemon: Pokemon, _ image: UIImage) {
+        self.pokemon = pokemon
+        self.pokemonImage = image
         titleLabel.text = pokemon.name.capitalized
         subtitleLabel.text = "Base Experience: \(pokemon.baseExperience)"
         imageView.image = image

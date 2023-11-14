@@ -25,6 +25,9 @@ class PokemonCollectionViewDelegate: NSObject, UICollectionViewDelegate {
             
             view.showSelectedPokemon(cell.pokemon, cell.pokemonImage)
         case .standard:
+            let cell = collectionView.cellForItem(at: indexPath) as! StandardAppCollectionViewCell
+            
+            view.showSelectedPokemon(cell.pokemon, cell.pokemonImage)
             break
         case .categories:
             break

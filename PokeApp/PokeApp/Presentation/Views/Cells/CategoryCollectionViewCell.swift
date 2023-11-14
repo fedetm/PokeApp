@@ -70,10 +70,10 @@ class CategoryCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureCell(_ generation: BasicPokemonGeneration, hideBottomLine: Bool) {
+    func configureCell(_ generation: BasicPokemonGeneration, row: Int, hideBottomLine: Bool) {
         titleLabel.text = generation.name
         let randomColor = UIColor.random
-        imageView.backgroundColor = randomColor
+        imageView.image = UIImage(systemName: "\(row).square.fill")
         lineView.isHidden = hideBottomLine
     }
 }

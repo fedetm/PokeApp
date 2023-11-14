@@ -200,7 +200,7 @@ class PokemonView: UIViewController {
                 self.presenter.getPokemonImageAndBaseExperience(pokemonURL: item.pokemon!.url, cell: cell)
                 
                 return cell
-            case .standard:
+            case .standard("First Generation"):
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StandardAppCollectionViewCell.reuseIdentifier, for: indexPath) as! StandardAppCollectionViewCell
                 
                 let isThirdItem = (indexPath.row + 1).isMultiple(of: 3)
@@ -209,10 +209,27 @@ class PokemonView: UIViewController {
                 self.presenter.getPokemonImageAndBaseExperience(specieURL: item.firstPokemonGeneration!.pokemonSpecieURL, cell: cell)
                 
                 return cell
+            case .standard("Second Generation"):
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StandardAppCollectionViewCell.reuseIdentifier, for: indexPath) as! StandardAppCollectionViewCell
+                
+                let isThirdItem = (indexPath.row + 1).isMultiple(of: 3)
+                cell.configureCell(hideBottomLine: isThirdItem)
+                
+                self.presenter.getPokemonImageAndBaseExperience(specieURL: item.secondPokemonGeneration!.pokemonSpecieURL, cell: cell)
+                
+                return cell
+            case .standard(_):
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StandardAppCollectionViewCell.reuseIdentifier, for: indexPath) as! StandardAppCollectionViewCell
+                
+                let isThirdItem = (indexPath.row + 1).isMultiple(of: 3)
+                cell.configureCell(hideBottomLine: isThirdItem)
+                
+                return cell
             case .categories:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCollectionViewCell.reuseIdentifier, for: indexPath) as! CategoryCollectionViewCell
                 let isLastItem = collectionView.numberOfItems(inSection: indexPath.section) == indexPath.row + 1
-                cell.configureCell(item.generation!, hideBottomLine: isLastItem)
+                
+                cell.configureCell(item.generation!, row: indexPath.row + 1, hideBottomLine: isLastItem)
                 
                 return cell
             }
@@ -253,14 +270,14 @@ class PokemonView: UIViewController {
         snapshot.appendSections([.promoted])
         snapshot.appendItems(Item.promotedPokemons, toSection: .promoted)
         
-        let popularSection = Section.standard("First Generation")
-        //let essentialSection = Section.standard("Essential picks")
-        let categoriesSection = Section.categories
+        let firstGeneration = Section.standard("First Generation")
+        let secondGeneration = Section.standard("Second Generation")
+        let generationsSection = Section.categories
         
-        snapshot.appendSections([popularSection/*, essentialSection*/, categoriesSection])
-        snapshot.appendItems(Item.firstPokemonGeneration, toSection: popularSection)
-        //snapshot.appendItems(Item.generations, toSection: essentialSection)
-        snapshot.appendItems(Item.generations, toSection: categoriesSection)
+        snapshot.appendSections([firstGeneration, secondGeneration, generationsSection])
+        snapshot.appendItems(Item.firstPokemonGeneration, toSection: firstGeneration)
+        snapshot.appendItems(Item.secondPokemonGeneration, toSection: secondGeneration)
+        snapshot.appendItems(Item.generations, toSection: generationsSection)
         
         sections = snapshot.sectionIdentifiers
         
