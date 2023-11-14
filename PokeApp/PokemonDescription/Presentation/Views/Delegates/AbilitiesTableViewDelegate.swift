@@ -27,7 +27,7 @@ class AbilitiesTableViewDelegate: NSObject, UITableViewDataSource {
         
         if pokemonAbility.isHidden {
             let attributes: [NSAttributedString.Key: Any] = [
-                .font: UIFont.italicSystemFont(ofSize: 15.0)
+                .font: UIFont.italicSystemFont(ofSize: 19.0)
             ]
 
             let attributedString = NSAttributedString(string: pokemonAbility.ability.name.capitalized, attributes: attributes)

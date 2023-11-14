@@ -71,7 +71,7 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     }
     
     func configureCell(_ generation: BasicPokemonGeneration, row: Int, hideBottomLine: Bool) {
-        titleLabel.text = generation.name
+        titleLabel.text = generation.name.capitalized
         imageView.image = UIImage(systemName: "\(row).square")
         imageView.tintColor = .darkGray
         lineView.isHidden = hideBottomLine

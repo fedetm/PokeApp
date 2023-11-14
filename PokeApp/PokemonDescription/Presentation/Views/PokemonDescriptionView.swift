@@ -10,6 +10,7 @@ import UIKit
 class PokemonDescriptionView: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var collectionViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var typesTableView: UITableView!
     @IBOutlet weak var movesTableView: UITableView!
     @IBOutlet weak var abilitiesTableView: UITableView!
@@ -68,6 +69,10 @@ class PokemonDescriptionView: UIViewController {
         activityIndicator.center = collectionView.center
         
         view.addSubview(activityIndicator)
+    }
+    
+    func updateCollectionViewHeight() {
+        collectionViewHeightConstraint.constant = collectionView.collectionViewLayout.collectionViewContentSize.height * 2
     }
 
 }

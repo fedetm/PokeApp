@@ -31,6 +31,8 @@ class PokemonDescriptionPresenter: IPokemonDescriptionPresenter, IPokemonDescrip
         }
         view.sprites = images
         view.collectionView.dataSource = view
+        
+        view.updateCollectionViewHeight()
         self.view.activityIndicator.stopAnimating()
     }
     

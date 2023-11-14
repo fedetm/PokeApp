@@ -11,4 +11,18 @@ class SpriteCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var imageView: UIImageView!
     
+    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
+        setNeedsLayout()
+        layoutIfNeeded()
+
+        let size = contentView.systemLayoutSizeFitting(layoutAttributes.size)
+        var newFrame = layoutAttributes.frame
+        newFrame.size.height = ceil(size.height)
+        newFrame.size.width = ceil(size.height)
+        layoutAttributes.frame = newFrame
+
+        return layoutAttributes
+    }
+
+    
 }
