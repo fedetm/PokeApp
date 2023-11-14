@@ -24,9 +24,21 @@ class AbilitiesTableViewDelegate: NSObject, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AbilityTableViewCell", for: indexPath) as! AbilityTableViewCell
         
         let pokemonAbility = view.pokemon.abilities[indexPath.row]
-        cell.nameLabel.text = pokemonAbility.ability.name.capitalized
         
-        cell.hiddenLabel.isHidden = pokemonAbility.isHidden
+        if pokemonAbility.isHidden {
+            let attributes: [NSAttributedString.Key: Any] = [
+                .font: UIFont.italicSystemFont(ofSize: 15.0)
+            ]
+
+            let attributedString = NSAttributedString(string: pokemonAbility.ability.name.capitalized, attributes: attributes)
+            
+            cell.nameLabel.attributedText = attributedString
+            cell.nameLabel.textColor = .lightGray
+        } else {
+            cell.nameLabel.text = pokemonAbility.ability.name.capitalized
+        }
+        
+        cell.hiddenLabel.isHidden = !pokemonAbility.isHidden
         
         return cell
     }

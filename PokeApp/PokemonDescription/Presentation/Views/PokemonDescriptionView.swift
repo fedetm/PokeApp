@@ -13,12 +13,14 @@ class PokemonDescriptionView: UIViewController {
     @IBOutlet weak var typesTableView: UITableView!
     @IBOutlet weak var movesTableView: UITableView!
     @IBOutlet weak var abilitiesTableView: UITableView!
+    @IBOutlet weak var statsTableView: UITableView!
     
     var presenter: IPokemonDescriptionPresenter!
     
     var typesTableViewDelegate: TypesTableViewDelegate!
     var movesTableViewDelegate: MovesTableViewDelegate!
     var abilitiesTableViewDelegate: AbilitiesTableViewDelegate!
+    var statsTableViewDelegate: StatsTableViewDelegate!
     
     var activityIndicator: UIActivityIndicatorView!
     
@@ -35,6 +37,12 @@ class PokemonDescriptionView: UIViewController {
         configureTypesTableView()
         configureMovesTableView()
         configureAbilitiesTableView()
+        configureStatsTableView()
+    }
+    
+    func configureStatsTableView() {
+        statsTableViewDelegate = StatsTableViewDelegate(view: self)
+        statsTableView.dataSource = statsTableViewDelegate
     }
     
     func configureAbilitiesTableView() {

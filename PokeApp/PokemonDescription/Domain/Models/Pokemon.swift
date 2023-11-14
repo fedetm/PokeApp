@@ -20,6 +20,7 @@ struct Pokemon: Codable, Hashable {
     var types: [BasicTypeResponse]
     var moves: [BasicMoveResponse]
     var abilities: [BasicAbilityResponse]
+    var stats: [BasicStatResponse]
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -34,5 +35,6 @@ struct Pokemon: Codable, Hashable {
         case types
         case moves
         case abilities
+        case stats
     }
 }
