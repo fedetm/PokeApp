@@ -18,4 +18,6 @@ protocol IPokemonPresenter {
     
     func showSelectedPokemon(_ pokemon: Pokemon, _ pokemonImage: UIImage)
     
+    func showSearchedPokemon(pokemonURL urlString: String)
+    
 }

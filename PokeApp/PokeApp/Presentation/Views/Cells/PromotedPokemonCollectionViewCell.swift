@@ -27,7 +27,7 @@ class PromotedPokemonCollectionViewCell: UICollectionViewCell {
     let headlineLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
-        label.textColor = UIColor.systemBlue
+        label.textColor = UIColor.systemGray2
         label.setContentHuggingPriority(.required, for: .vertical)
         
         return label

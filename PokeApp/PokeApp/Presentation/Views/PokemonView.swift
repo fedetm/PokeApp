@@ -27,8 +27,11 @@ class PokemonView: UIViewController {
         static let bottomLine = "bottomLine"
     }
     
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var searchTableView: UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    var searchTableViewDelegate: SearchTableViewDelegate!
     var dataSource: UICollectionViewDiffableDataSource<Section, Item>!
     var collectionViewDelegate: PokemonCollectionViewDelegate!
     
@@ -38,6 +41,7 @@ class PokemonView: UIViewController {
         super.viewDidLoad()
         
         initPokemonModule()
+        configureSearchTableView()
         configureActivityIndicator()
         presenter.getPokemonsAndGenerations()
     }
@@ -45,6 +49,15 @@ class PokemonView: UIViewController {
     func initPokemonModule() {
         let router = PokemonRouter()
         router.initPokemonModule(view: self)
+    }
+    
+    func configureSearchTableView() {
+        searchTableViewDelegate = SearchTableViewDelegate(view: self)
+        searchTableView.delegate = searchTableViewDelegate
+        searchTableView.dataSource = searchTableViewDelegate
+        searchBar.delegate = searchTableViewDelegate
+        
+        searchTableView.isHidden = true
     }
     
     func configureActivityIndicator() {

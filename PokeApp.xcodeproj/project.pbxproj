@@ -21,6 +21,8 @@
 		731F99882B02EC750041FE72 /* StatsTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731F99872B02EC750041FE72 /* StatsTableViewDelegate.swift */; };
 		731F998A2B02ECDB0041FE72 /* BasicStatResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731F99892B02ECDB0041FE72 /* BasicStatResponse.swift */; };
 		731F998C2B02ED610041FE72 /* BasicStat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731F998B2B02ED610041FE72 /* BasicStat.swift */; };
+		731F99902B03CDC40041FE72 /* SearchTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731F998F2B03CDC40041FE72 /* SearchTableViewDelegate.swift */; };
+		731F99922B03F72C0041FE72 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731F99912B03F72B0041FE72 /* SearchTableViewCell.swift */; };
 		736ACE4E2ACB5BF600758202 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736ACE4D2ACB5BF600758202 /* AppDelegate.swift */; };
 		736ACE502ACB5BF600758202 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736ACE4F2ACB5BF600758202 /* SceneDelegate.swift */; };
 		736ACE572ACB5BF700758202 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 736ACE562ACB5BF700758202 /* Assets.xcassets */; };
@@ -103,6 +105,8 @@
 		731F99872B02EC750041FE72 /* StatsTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsTableViewDelegate.swift; sourceTree = "<group>"; };
 		731F99892B02ECDB0041FE72 /* BasicStatResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicStatResponse.swift; sourceTree = "<group>"; };
 		731F998B2B02ED610041FE72 /* BasicStat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicStat.swift; sourceTree = "<group>"; };
+		731F998F2B03CDC40041FE72 /* SearchTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewDelegate.swift; sourceTree = "<group>"; };
+		731F99912B03F72B0041FE72 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		736ACE4A2ACB5BF600758202 /* PokeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		736ACE4D2ACB5BF600758202 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		736ACE4F2ACB5BF600758202 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -336,6 +340,7 @@
 				736ACEB12ACDB98300758202 /* PromotedPokemonCollectionViewCell.swift */,
 				736ACEB72AD205FF00758202 /* StandardAppCollectionViewCell.swift */,
 				736ACEB92AE34F0300758202 /* CategoryCollectionViewCell.swift */,
+				731F99912B03F72B0041FE72 /* SearchTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -353,6 +358,7 @@
 			isa = PBXGroup;
 			children = (
 				736ACECF2AE992EA00758202 /* PokemonCollectionViewDelegate.swift */,
+				731F998F2B03CDC40041FE72 /* SearchTableViewDelegate.swift */,
 			);
 			path = Delegates;
 			sourceTree = "<group>";
@@ -583,6 +589,7 @@
 				736ACE912ACB5EED00758202 /* PokemonInteractor.swift in Sources */,
 				731F997A2B02BC190041FE72 /* MoveTableViewCell.swift in Sources */,
 				731F998A2B02ECDB0041FE72 /* BasicStatResponse.swift in Sources */,
+				731F99902B03CDC40041FE72 /* SearchTableViewDelegate.swift in Sources */,
 				736ACE8F2ACB5EAE00758202 /* IPokemonInteractor.swift in Sources */,
 				736ACE982ACB5F7D00758202 /* PokemonRouter.swift in Sources */,
 				731F99822B02C65A0041FE72 /* BasicAbilityResponse.swift in Sources */,
@@ -615,6 +622,7 @@
 				736ACEBA2AE34F0300758202 /* CategoryCollectionViewCell.swift in Sources */,
 				736ACEE62AEDA4AA00758202 /* IPokemonDescriptionRepository.swift in Sources */,
 				731F997E2B02C44F0041FE72 /* AbilityTableViewCell.swift in Sources */,
+				731F99922B03F72C0041FE72 /* SearchTableViewCell.swift in Sources */,
 				736ACEBE2AE452A700758202 /* Sprites.swift in Sources */,
 				736ACE932ACB5F0B00758202 /* IPokemonRepository.swift in Sources */,
 				736ACEEB2AEDABB800758202 /* PokemonDescriptionDataSource.swift in Sources */,

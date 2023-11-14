@@ -17,30 +17,81 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wmf-SD-X6o">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search pokemon" translatesAutoresizingMaskIntoConstraints="NO" id="9qB-SP-7J4">
+                                <rect key="frame" x="8" y="155" width="377" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Y6W-OH-hqX" id="fBU-WL-FEI"/>
+                                </connections>
+                            </searchBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GM8-7f-5mX">
+                                <rect key="frame" x="0.0" y="219" width="393" height="633"/>
+                                <subviews>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wmf-SD-X6o">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="633"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Ozz-T1-ItH">
+                                            <size key="itemSize" width="128" height="128"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells/>
+                                    </collectionView>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="bHo-3C-nAu">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="697"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchTableViewCell" textLabel="orE-1a-KJj" style="IBUITableViewCellStyleDefault" id="j5G-yg-IOC" customClass="SearchTableViewCell" customModule="PokeApp" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="50" width="393" height="44"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="j5G-yg-IOC" id="88j-Xf-mA5">
+                                                    <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Pokemon name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="orE-1a-KJj">
+                                                            <rect key="frame" x="20" y="0.0" width="353" height="44"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                            <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="nameLabel" destination="orE-1a-KJj" id="2ms-AS-lYc"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
+                                    </tableView>
+                                </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Ozz-T1-ItH">
-                                    <size key="itemSize" width="128" height="128"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells/>
-                            </collectionView>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="wmf-SD-X6o" secondAttribute="bottom" id="Dq4-Vi-SVA"/>
+                                    <constraint firstItem="wmf-SD-X6o" firstAttribute="top" secondItem="GM8-7f-5mX" secondAttribute="top" id="Oi6-NT-fy1"/>
+                                    <constraint firstItem="wmf-SD-X6o" firstAttribute="leading" secondItem="GM8-7f-5mX" secondAttribute="leading" id="RVk-tD-KEd"/>
+                                    <constraint firstAttribute="trailing" secondItem="wmf-SD-X6o" secondAttribute="trailing" id="yEh-Ik-SGX"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="wmf-SD-X6o" secondAttribute="trailing" id="1at-iC-eqG"/>
-                            <constraint firstAttribute="bottom" secondItem="wmf-SD-X6o" secondAttribute="bottom" id="AGe-FC-UgF"/>
-                            <constraint firstItem="wmf-SD-X6o" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="an2-Bg-wH5"/>
-                            <constraint firstItem="wmf-SD-X6o" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="uJW-qp-EVs"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="9qB-SP-7J4" secondAttribute="trailing" constant="8" id="112-py-z0s"/>
+                            <constraint firstItem="GM8-7f-5mX" firstAttribute="top" secondItem="9qB-SP-7J4" secondAttribute="bottom" constant="8" id="8v9-sF-Azc"/>
+                            <constraint firstAttribute="trailing" secondItem="GM8-7f-5mX" secondAttribute="trailing" id="bUs-a4-iCT"/>
+                            <constraint firstItem="9qB-SP-7J4" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="8" id="nuj-h3-erj"/>
+                            <constraint firstItem="GM8-7f-5mX" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="uT4-Vm-KzZ"/>
+                            <constraint firstItem="9qB-SP-7J4" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="wY9-Dm-erY"/>
+                            <constraint firstAttribute="bottom" secondItem="GM8-7f-5mX" secondAttribute="bottom" id="y63-jo-29w"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Pokemon" largeTitleDisplayMode="always" id="QLc-WK-BCO"/>
                     <connections>
                         <outlet property="collectionView" destination="wmf-SD-X6o" id="slP-Lf-Urz"/>
+                        <outlet property="searchBar" destination="9qB-SP-7J4" id="OBg-T0-CfP"/>
+                        <outlet property="searchTableView" destination="bHo-3C-nAu" id="ezu-ec-aJR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

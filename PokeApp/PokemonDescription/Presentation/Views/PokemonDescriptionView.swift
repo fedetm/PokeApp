@@ -30,6 +30,7 @@ class PokemonDescriptionView: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.isNavigationBarHidden = false
         self.navigationItem.title = pokemon.name.capitalized
         imageView.image = pokemonImage
         configureActivityIndicator()

@@ -78,4 +78,14 @@ class PokemonPresenter: IPokemonPresenter, IPokemonIntToPresenter {
         router.showPokemonDescriptionView(currentView: self.view, pokemon: pokemon, image: pokemonImage)
     }
     
+    func showSearchedPokemon(pokemonURL urlString: String) {
+        interactor.getPokemonImageAndBaseExperience(pokemonURL: urlString) { pokemon, data in
+            guard let image = UIImage(data: data) else { return }
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.showSelectedPokemon(pokemon, image)
+            }
+        }
+    }
+    
 }

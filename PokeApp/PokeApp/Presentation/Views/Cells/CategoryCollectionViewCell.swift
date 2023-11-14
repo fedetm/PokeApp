@@ -72,18 +72,9 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     
     func configureCell(_ generation: BasicPokemonGeneration, row: Int, hideBottomLine: Bool) {
         titleLabel.text = generation.name
-        let randomColor = UIColor.random
-        imageView.image = UIImage(systemName: "\(row).square.fill")
+        imageView.image = UIImage(systemName: "\(row).square")
+        imageView.tintColor = .darkGray
         lineView.isHidden = hideBottomLine
-    }
-}
-
-extension UIColor {
-    static var random: UIColor {
-        let red = CGFloat(arc4random_uniform(256)) / 255.0
-        let green = CGFloat(arc4random_uniform(256)) / 255.0
-        let blue = CGFloat(arc4random_uniform(256)) / 255.0
-        return UIColor(red: red, green: green, blue: blue, alpha: 1.0)
     }
 }
 

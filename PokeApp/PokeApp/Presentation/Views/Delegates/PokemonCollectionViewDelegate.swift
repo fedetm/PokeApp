@@ -10,14 +10,13 @@ import UIKit
 
 class PokemonCollectionViewDelegate: NSObject, UICollectionViewDelegate {
     
-    weak var view: PokemonView?
+    weak var view: PokemonView!
     
     init(view: PokemonView) {
         self.view = view
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let view = view else { return }
         let section = view.sections[indexPath.section]
         switch section {
         case .promoted:
